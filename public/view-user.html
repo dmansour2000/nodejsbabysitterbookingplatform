@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Babysitter Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .user-details {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .user-details h2 {
+            margin-top: 0;
+        }
+        .user-details p {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="user-details">
+        <h2>Babysitter Details</h2>
+        <p data-i18n="name"><strong>Name :</strong> <span id="name"></span></p>
+        <p data-i18n="phone"><strong>Phone:</strong> <span id="phone"></span></p>
+        <p data-i18n="nationality"><strong>Nationality:</strong> <span id="nationality"></span></p>
+        <p data-i18n="services"><strong>Services:</strong> <span id="servicesProvided"></span></p>
+        <!-- Add more fields as needed -->
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const params = new URLSearchParams(window.location.search);
+            const userId = params.get('id');
+
+            if (!userId) {
+                alert('No user ID provided');
+                return;
+            }
+
+            const token = localStorage.getItem('token');
+
+            if (!token) {
+                alert('You need to be logged in to view this page.');
+                return;
+            }
+
+            try {
+                const response = await fetch(`http://localhost:5170/api/babysitter/users/${userId}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    const user = await response.json();
+                    document.getElementById('name').textContent = user.name;
+                    document.getElementById('phone').textContent = user.phone;
+                    document.getElementById('nationality').textContent = user.nationality;
+                    document.getElementById('servicesProvided').textContent = user.services;
+                } else {
+                    alert('Failed to fetch user details. Please try again later.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred while fetching user details. Please try again later.');
+            }
+        });
+    </script>
+</body>
+</html>

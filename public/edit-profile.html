@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="editProfile">Edit Profile</title>
+    <style>
+        /* Basic styling for the form */
+        form {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            max-width: 400px;
+        }
+        input, select, label {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 8px;
+        }
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <h1 data-i18n="editProfile">Edit Profile</h1>
+    <form id="editProfileForm">
+        <label for="phone" data-i18n="mobilePhone">Mobile Phone Number:</label>
+        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
+
+        <label for="age" data-i18n="age">Age:</label>
+        <input type="number" id="age" name="age" placeholder="Enter your age" required>
+
+        <label for="nationality" data-i18n="nationality">Nationality:</label>
+        <input type="text" id="nationality" name="nationality" placeholder="Enter your nationality" required>
+
+        <label data-i18n="servicesProvided">Services Provided:</label>
+        <div class="checkbox-group">
+            <label><input type="checkbox" name="services" value="cleaning" data-i18n="cleaning"> Cleaning</label>
+            <label><input type="checkbox" name="services" value="babysitting" data-i18n="babysitting"> Babysitting</label>
+            <label><input type="checkbox" name="services" value="cooking" data-i18n="cooking"> Cooking</label>
+            <label><input type="checkbox" name="services" value="studying" data-i18n="studying"> Studying for the kids</label>
+        </div>
+
+        <button type="submit" data-i18n="saveChanges">Save Changes</button>
+    </form>
+
+ <!-- Load i18next from a CDN -->
+ <script src="https://unpkg.com/i18next@latest/i18next.min.js"></script>
+ <script src="js/i18n.js"></script>
+ <script src="js/edit-profile.js"></script>
+ <script>
+     document.addEventListener('DOMContentLoaded', () => {
+         document.querySelectorAll('[data-i18n]').forEach(el => {
+             el.textContent = i18next.t(el.getAttribute('data-i18n'));
+         });
+
+         document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+             el.setAttribute('placeholder', i18next.t(el.getAttribute('data-i18n-placeholder')));
+         });
+     });
+ </script>
+</body>
+</html>

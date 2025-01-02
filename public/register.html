@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="register">Register - Babysitter Booking Platform Service</title>
+    <style>
+        /* Basic styling for forms */
+        form {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            max-width: 300px;
+        }
+        input, select {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 8px;
+        }
+    </style>
+</head>
+<body>
+    <h1 data-i18n="createAccount">Create an Account</h1>
+    <div id="register">
+        <h2 data-i18n="register">Register</h2>
+        <form id="registerForm">
+            <input type="text" id="regUsername" placeholder="Username" data-i18n-placeholder="username" required>
+            <input type="password" id="regPassword" placeholder="Password" data-i18n-placeholder="password" required>
+            <input type="text" id="regName" placeholder="Name" data-i18n-placeholder="name" required>
+            <select id="regRole">
+                <option value="user" data-i18n="user">User</option>
+                <option value="babysitter" data-i18n="babysitter">Babysitter</option>
+            </select>
+            <button type="submit" data-i18n="register">Register</button>
+        </form>
+        <p data-i18n="alreadyHaveAccount">Already have an account? </p>
+        <a href="index.html" data-i18n="loginHere">Login here</a>
+    </div>
+
+    <!-- Load i18next from a CDN -->
+    <script src="https://unpkg.com/i18next@latest/i18next.min.js"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/register.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Update elements with data-i18n attribute using innerHTML
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                el.innerHTML = i18next.t(el.getAttribute('data-i18n'));
+           });
+
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                el.setAttribute('placeholder', i18next.t(el.getAttribute('data-i18n-placeholder')));
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="availableBabysitters">Available Babysitters</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h1 data-i18n="availableBabysitters">Available Babysitters</h1>
+    <table id="babysittersTable">
+        <thead>
+            <tr>
+                <th data-i18n="name">Name</th>
+                <th data-i18n="servicesProvided">Services Provided</th>
+                <th data-i18n="age">Age</th>
+                <th data-i18n="nationality">Nationality</th>
+                <th data-i18n="phone">Phone</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Babysitter rows will be inserted here -->
+        </tbody>
+    </table>
+
+   <!-- Load i18next from a CDN -->
+   <script src="https://unpkg.com/i18next@latest/i18next.min.js"></script>
+   <script src="js/i18n.js"></script>
+   <script src="js/babysitters.js"></script>
+   <script>
+       document.addEventListener('DOMContentLoaded', () => {
+           document.querySelectorAll('[data-i18n]').forEach(el => {
+               el.textContent = i18next.t(el.getAttribute('data-i18n'));
+           });
+
+           document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+               el.setAttribute('placeholder', i18next.t(el.getAttribute('data-i18n-placeholder')));
+           });
+       });
+   </script>
+</body>
+</html>

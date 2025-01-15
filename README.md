@@ -11,7 +11,7 @@ The Frontend is built using React.js and the backend is built using Node.js and 
 </p>
 
 ## Heroku WebApp Link 
-[[https://babysitter-booking-af7cbf57133b.herokuapp.com](https://babysitter-booking-af7cbf57133b.herokuapp.com)]
+[https://babysitter-booking-af7cbf57133b.herokuapp.com](https://babysitter-booking-af7cbf57133b.herokuapp.com)
 
 ## Available Scripts
 
@@ -19,13 +19,12 @@ In the (frontend) project directory, you can run:
 
 ### `npm run serve`
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Launches the web app on http://localhost:5170 .<br />
+
 
 ### `npm run build`
 
 Builds the app for production to the `build` folder.<br />
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+
